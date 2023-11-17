@@ -29,7 +29,7 @@ public class POOP11 {
         int edad;
         int numCuenta;
 
-        public Alumno(String nombre, String apellidoPaterno, String apellidoMaterno, int edad, int numCuenta) {
+        public Alumno(String nombre, String apellidoPaterno, String apellidoMaterno, int edad, int numCuenta, double promedio, String direccion) {
             this.nombre = nombre;
             this.apellidoPaterno = apellidoPaterno;
             this.apellidoMaterno = apellidoMaterno;
@@ -105,55 +105,59 @@ public class POOP11 {
         }
         
         
-        System.out.println("##########Actividad Extra##########");
-        try {
-            System.out.println("#####Escritura del archivo#####");
-            FileWriter fw = new FileWriter("alumnos.csv");
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter impresoraDeArchivos = new PrintWriter(bw);
+System.out.println("##########Actividad Extra##########");
+try {
+    System.out.println("#####Escritura del archivo#####");
+    FileWriter fw = new FileWriter("alumnos.csv");
+    BufferedWriter bw = new BufferedWriter(fw);
+    PrintWriter impresoraDeArchivos = new PrintWriter(bw);
 
-            // Escribir 5 objetos Alumno en el archivo
-            for (int i = 0; i < 5; i++) {
-                impresoraDeArchivos.println("Rodrigo,Sanchez,Perez,20,1234656,9.9,Copilco 300 Coyoacan");
-            }
+    // Escribir 5 objetos Alumno en el archivo
+    impresoraDeArchivos.println("Rodrigo,Sanchez,Perez,20,1234656,9.9,Copilco 300 Coyoacan");
+    impresoraDeArchivos.println("Kevin Uriel,Jimenez,Tejeda,20,1234656,7.9,Copilco 300 Coyoacan");
+    impresoraDeArchivos.println("Dhanesh Gael,Cruz,Manilla,20,1234656,6.9,Copilco 300 Coyoacan");
+    impresoraDeArchivos.println("Jose David,Peña,Arredondo,20,1234656,9.9,Copilco 300 Coyoacan");
+    impresoraDeArchivos.println("Tyler,Durden,Gonzalez,25,1234656,10,Copilco 300 Coyoacan");
 
-            impresoraDeArchivos.close();
+    impresoraDeArchivos.close();
 
-            System.out.println("#####Lectura del archivo#####");
-            FileReader fr = new FileReader("alumnos.csv");
-            BufferedReader br = new BufferedReader(fr);
-            System.out.println("El texto del archivo es: ");
+    System.out.println("#####Lectura del archivo#####");
+    FileReader fr = new FileReader("alumnos.csv");
+    BufferedReader br = new BufferedReader(fr);
+    System.out.println("El texto del archivo es: ");
 
-            // Lista para almacenar los objetos Alumno
-            List<Alumno> listaAlumnos = new ArrayList<>();
+    // Lista para almacenar los objetos Alumno
+    List<Alumno> listaAlumnos = new ArrayList<>();
 
-            String linea = br.readLine();
-            while (linea != null) {
-                System.out.println(linea);
-                // Tokenizar la línea y crear un objeto Alumno
-                StringTokenizer tokenizador = new StringTokenizer(linea, ",");
-                String nombre = tokenizador.nextToken();
-                String apellidoPaterno = tokenizador.nextToken();
-                String apellidoMaterno = tokenizador.nextToken();
-                int edad = Integer.parseInt(tokenizador.nextToken());
-                int numCuenta = Integer.parseInt(tokenizador.nextToken());
+    String linea = br.readLine();
+    while (linea != null) {
+        System.out.println(linea);
+        // Tokenizar la línea y crear un objeto Alumno
+        StringTokenizer tokenizador = new StringTokenizer(linea, ",");
+        String nombre = tokenizador.nextToken();
+        String apellidoPaterno = tokenizador.nextToken();
+        String apellidoMaterno = tokenizador.nextToken();
+        int edad = Integer.parseInt(tokenizador.nextToken());
+        int numCuenta = Integer.parseInt(tokenizador.nextToken());
+        double promedio = Double.parseDouble(tokenizador.nextToken());
+        String direccion = tokenizador.nextToken();
 
-                // Crear objeto Alumno y agregarlo a la lista
-                Alumno alumno = new Alumno(nombre, apellidoPaterno, apellidoMaterno, edad, numCuenta);
-                listaAlumnos.add(alumno);
+        // Crear objeto Alumno y agregarlo a la lista
+        Alumno alumno = new Alumno(nombre, apellidoPaterno, apellidoMaterno, edad, numCuenta, promedio, direccion);
+        listaAlumnos.add(alumno);
 
-                // Leer la siguiente línea
-                linea = br.readLine();
-            }
-            br.close();
-
-            // Imprimir la información de los objetos Alumno en la consola
-            for (Alumno alumno : listaAlumnos) {
-                System.out.println(alumno);
-            }
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        // Leer la siguiente línea
+        linea = br.readLine();
     }
+    br.close();
+
+    // Imprimir la información de los objetos Alumno en la consola
+    for (Alumno alumno : listaAlumnos) {
+        System.out.println(alumno);
+    }
+
+} catch (IOException ex) {
+    System.out.println(ex.getMessage());
+}
+}
 }
